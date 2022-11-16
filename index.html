@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Not To Do Application</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="text-center">Not to do application</h1>
+
+        <div class="row">
+          <div class="col"></div>
+          <div class="col"></div>
+        </div>
+        <!-- Form section -->
+
+        <form action="javascript:void(0)" onsubmit="handleonsubmit(this)">
+          <div class="text-area">
+            <div class="row text-center mt-5">
+              <div class="col-md-9">
+                <div class="form-floating">
+                  <input
+                    class="form-control"
+                    type="text"
+                    id="floatingInput"
+                    name="task"
+                  />
+                  <label for="floatingInput">Enter the task</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-floating mb-3">
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="floatingInput"
+                    placeholder="name@example.com"
+                    name="hour"
+                  />
+                  <label for="floatingInput">Enter the estimated hours</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="button-area text-center">
+            <button class="btn btn-danger md">Enter task</button>
+          </div>
+        </form>
+
+        <!-- display section -->
+        <div class="display mt-4">
+          <div class="row line">
+            <div class="col">
+              <h3 class="text-center">To do List</h3>
+
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>S.N</th>
+                    <th>Task</th>
+                    <th>Hours</th>
+                    <th>Move to Not to do</th>
+                  </tr>
+                </thead>
+
+                <thead id="tabletoshow"></thead>
+              </table>
+            </div>
+            <div class="col">
+              <h3 class="text-center">Not To do List</h3>
+
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>S.N</th>
+                    <th>Task</th>
+                    <th>Hours</th>
+                  </tr>
+                </thead>
+                <thead id="baddisplay"></thead>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
