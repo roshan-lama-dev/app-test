@@ -4,8 +4,15 @@ const tableId = document.getElementById("tabletoshow");
 
 const badtableId = document.getElementById("baddisplay");
 
+const displayTotalHours = document.getElementById("displayTotalHours");
+const disaplyBadHours = document.getElementById("disaplyBadHours");
+
 const taskArray = [];
 const badArray = [];
+
+const sumHours = 0;
+
+let htcounter = 0;
 
 //
 const handleonsubmit = (i) => {
@@ -20,8 +27,16 @@ const handleonsubmit = (i) => {
   };
 
   taskArray.push(oj);
+
+  calculateHours();
+
+  const sumHours = calculateHours() + calcualteBadHours();
+
+  console.log(sumHours);
+  // console.log(calculateHours());
   //   console.log(taskArray);
   display();
+
   //   console.log(tableID);
 };
 
@@ -29,6 +44,8 @@ const display = () => {
   let str = "";
   let dummyhr = "";
   taskArray.map((item, index) => {
+    htcounter = htcounter + +item.hour;
+    // console.log(htcounter);
     // t
     if (item.hour < 2) {
       //   console.log("hour");
@@ -51,8 +68,11 @@ const display = () => {
     `;
   });
 
+  // console.log("This is finbal" + htcounter);
+
   tableId.innerHTML = str;
-  console.log(taskArray);
+  displayTotalHours.innerHTML = calculateHours() + sumHours;
+  // console.log(taskArray);
 };
 
 const handleOnClick = (i) => {
@@ -68,11 +88,16 @@ const handleOnClick = (i) => {
   // we spread to get the object inside an array
 
   badArray.push(modifiedarray[0]);
-  console.log(badArray);
+  calcualteBadHours();
+
+  // sumHours = calculateHours() + calcualteBadHours();
+  // console.log(sumHours);
+  // console.log(badArray);
 
   // taskArray.splice(i, 1);
   display();
   displayBadItem();
+
   //   console.log(badArray);
 };
 
@@ -84,7 +109,7 @@ const handleDelete = (i) => {
 };
 
 const displayBadItem = () => {
-  console.log(badArray);
+  // console.log(badArray);
   let str = "";
 
   badArray.map((displ, index) => {
@@ -95,15 +120,38 @@ const displayBadItem = () => {
     <td>1</td>
   <td>${displ.task}</td>
     <td>${displ.hour} </td>
-    <td><button onclick="handleTaskDelete(${index})" class="btn btn-warning ">Move</button> </td>
- <td><button onclick class="btn btn-danger">D</button></td>
+    <td><button onclick="handleTaskDelete(${index})" class="btn btn-warning "><i class="fa-solid fa-arrow-left"> </i></button> </td>
+ <td><button onclick class="btn btn-danger"><i class="fa-solid fa-trash"></i></button></td>
     </tr>
     `;
     badtableId.innerHTML = str;
   });
+
+  disaplyBadHours.innerHTML = calcualteBadHours();
 };
 
 const handleTaskDelete = () => {
   badArray.splice(i, 1);
   displayBadItem();
+};
+
+// create a function to add the hours from the array and return the total
+
+const calculateHours = () => {
+  const toalhours = taskArray.reduce((acc, item) => {
+    acc = acc + +item.hour;
+
+    return acc;
+  }, 0);
+  return toalhours;
+};
+
+const calcualteBadHours = () => {
+  const totalBadHours = badArray.reduce((acc, item) => {
+    acc = acc + +item.hour;
+
+    return acc;
+  }, 0);
+
+  return totalBadHours;
 };
